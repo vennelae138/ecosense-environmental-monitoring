@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EcoSense | Environmental Monitoring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head><body>
+<div class="shell"><aside class="sidebar"><div class="brand"><div class="logo">✳</div><div><b>EcoSense</b><small>ENVIRONMENTAL INTELLIGENCE</small></div></div>
+<div class="side-label">WORKSPACE</div><a class="nav active" href="#overview">▦ &nbsp; Overview</a><a class="nav" href="#trends">⌁ &nbsp; Trends & history</a><a class="nav" href="#alerts">♧ &nbsp; Alerts</a>
+<div class="side-bottom"><div class="side-label">DEMO STATUS</div><div class="device"><i></i><div><b>Demo data active</b><small>No physical sensor connected</small></div></div><p class="note">Software-first IoT prototype. Real sensors can be integrated later.</p><div class="profile"><div class="avatar">ES</div><div><b>EcoSense Project</b><small>Student workspace</small></div></div></div></aside>
+<main class="main"><header class="topbar"><div class="crumb">Workspace <span>/</span> <b>Environmental overview</b></div><div class="top-actions"><span class="live"><i></i> DEMO LIVE</span><button id="refreshBtn" title="Refresh">↻</button></div></header>
+<section class="welcome" id="overview"><div><div class="eyebrow">— ENVIRONMENTAL MONITORING SYSTEM</div><h1>Understand your <em>environment.</em></h1><p>A clear view of conditions around you, updated automatically.</p></div><div class="location"><label for="locationSelect">MONITORING LOCATION</label><select id="locationSelect">{% for location in locations %}<option>{{ location }}</option>{% endfor %}</select></div></section>
+<div class="banner"><b>ⓘ &nbsp; Demonstration mode</b><span>These readings are simulated sample data, not measurements from real sensors.</span><strong>SOFTWARE PROTOTYPE</strong></div>
+<section class="section-head"><div><h2>Current conditions</h2><p>Latest sample readings for <b id="locationName">College Campus</b></p></div><div class="updated">Last updated <b id="lastUpdated">—</b></div></section>
+<section class="metrics">
+<article class="metric temp"><div class="metric-head"><span class="metric-icon">♨</span><span>TEMPERATURE</span></div><div class="value"><span id="temperatureValue">—</span><small>°C</small></div><div class="metric-foot"><span>Ambient temperature</span><b class="chip" id="tempStatus">Typical</b></div><div class="track"><span id="tempBar"></span></div></article>
+<article class="metric hum"><div class="metric-head"><span class="metric-icon">◌</span><span>HUMIDITY</span></div><div class="value"><span id="humidityValue">—</span><small>%</small></div><div class="metric-foot"><span>Relative humidity</span><b class="chip" id="humidityStatus">Moderate</b></div><div class="track"><span id="humidityBar"></span></div></article>
+<article class="metric air"><div class="metric-head"><span class="metric-icon">≋</span><span>AIR QUALITY INDEX</span></div><div class="value"><span id="aqiValue">—</span><small>AQI*</small></div><div class="metric-foot"><span>Illustrative AQI value</span><b class="chip" id="aqiStatus">Good</b></div><div class="track"><span id="aqiBar"></span></div></article></section>
+<p class="footnote">*AQI values are simulated for demonstration and are not official air-quality measurements.</p>
+<section class="content-grid" id="trends"><article class="panel"><div class="panel-head"><div><h2>Environmental trends</h2><p>Recent readings over time</p></div><div class="legend"><span>● Temperature</span><span>● Humidity</span></div></div><div class="chart-wrap"><canvas id="trendChart"></canvas></div><div class="chart-footer">● Sample data timeline <span>Last 24 readings</span></div></article>
+<article class="panel" id="alerts"><div class="panel-head"><div><h2>Environment status</h2><p>Based on demo thresholds</p></div><span class="shield">✓</span></div><div id="alertList" class="alerts"></div><div class="threshold"><b>About these alerts</b><p>These are configurable demo rules, not medical or regulatory advice.</p></div></article></section>
+<section class="panel history"><div class="panel-head"><div><h2>Recent readings</h2><p>Latest stored samples for the selected location</p></div><button class="export" id="downloadBtn">↓ Export CSV</button></div><div class="table-wrap"><table><thead><tr><th>TIME</th><th>TEMPERATURE</th><th>HUMIDITY</th><th>AQI*</th><th>DATA SOURCE</th></tr></thead><tbody id="historyBody"><tr><td colspan="5">Loading readings…</td></tr></tbody></table></div></section>
+<footer><b>✳ EcoSense</b><span>Environmental Monitoring System · Student IoT project</span><span>● Application online</span></footer></main></div>
+<script src="{{ url_for('static',filename='app.js') }}"></script></body></html>
